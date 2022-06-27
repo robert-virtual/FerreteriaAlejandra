@@ -14,11 +14,7 @@ namespace FerreteriaAlejandra
 {
     public partial class Productos : Form
     {
-        CRUD crud = new CRUD();
-        BuscarP pb = new BuscarP();
-        Boolean ebc = false;
 
-        int renglon = 0;
         public Productos()
         {
             InitializeComponent();
@@ -36,50 +32,32 @@ namespace FerreteriaAlejandra
 
         private void datalistado_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 && e.ColumnIndex > -1)
-            {
-                pb.IdProductos = datalistado.Rows[renglon].Cells["idProductos"].Value.ToString();
-                pb.Nombre = datalistado.Rows[renglon].Cells["nombre"].Value.ToString();
-                pb.Descripcion = datalistado.Rows[renglon].Cells["descripcion"].Value.ToString();
-                pb.Cantidad = float.Parse(datalistado.Rows[renglon].Cells["cantidad"].Value.ToString());
-                pb.PrecioVenta = decimal.Parse(datalistado.Rows[renglon].Cells["precioVenta"].Value.ToString());
-                pb.PrecioCompra = decimal.Parse(datalistado.Rows[renglon].Cells["precioCompra"].Value.ToString());
-                pb.IdTipoProducto = int.Parse(datalistado.Rows[renglon].Cells["tipoproducto_idTipoProducto"].Value.ToString());
+            //if (e.RowIndex > -1 && e.ColumnIndex > -1)
+            //{
+            //    pb.IdProductos = datalistado.Rows[renglon].Cells["idProductos"].Value.ToString();
+            //    pb.Nombre = datalistado.Rows[renglon].Cells["nombre"].Value.ToString();
+            //    pb.Descripcion = datalistado.Rows[renglon].Cells["descripcion"].Value.ToString();
+            //    pb.Cantidad = float.Parse(datalistado.Rows[renglon].Cells["cantidad"].Value.ToString());
+            //    pb.PrecioVenta = decimal.Parse(datalistado.Rows[renglon].Cells["precioVenta"].Value.ToString());
+            //    pb.PrecioCompra = decimal.Parse(datalistado.Rows[renglon].Cells["precioCompra"].Value.ToString());
+            //    pb.IdTipoProducto = int.Parse(datalistado.Rows[renglon].Cells["tipoproducto_idTipoProducto"].Value.ToString());
 
-                txtID.Text = pb.IdProductos;
-                txtNombre.Text = pb.Nombre;
-                txtDescripcion.Text = pb.Descripcion;
-                numeric1.Text = Convert.ToString(pb.Cantidad);
-                txtVenta.Text = Convert.ToString(pb.PrecioVenta);
-                txtCompra.Text = Convert.ToString(pb.PrecioCompra);
-                cmbTipo.SelectedValue = pb.IdTipoProducto;
-            }
+            //    txtID.Text = pb.IdProductos;
+            //    txtNombre.Text = pb.Nombre;
+            //    txtDescripcion.Text = pb.Descripcion;
+            //    numeric1.Text = Convert.ToString(pb.Cantidad);
+            //    txtVenta.Text = Convert.ToString(pb.PrecioVenta);
+            //    txtCompra.Text = Convert.ToString(pb.PrecioCompra);
+            //    cmbTipo.SelectedValue = pb.IdTipoProducto;
+            //}
         }
 
         private void Productos_Load(object sender, EventArgs e)
         {
-            datalistado = crud.mostrarTipos(datalistado);
-            // READ();
-            //  cargarTabla(null);
-            crud.llenarTipo(cmbTipo);
-            cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            pb.IdProductos = null;
-            pb.Nombre = txtNombre.Text;
-            pb.Descripcion = txtDescripcion.Text;
-            pb.Cantidad = int.Parse(numeric1.Text);
-            pb.PrecioVenta = decimal.Parse(txtVenta.Text);
-            pb.PrecioCompra = decimal.Parse(txtCompra.Text);
-            pb.IdTipoProducto = int.Parse(cmbTipo.SelectedValue.ToString());
-
-            crud.guardarProducto(pb);
-
-            limpiar();
-
-            datalistado = crud.mostrarTipos(datalistado);
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -89,30 +67,13 @@ namespace FerreteriaAlejandra
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            pb.IdProductos = txtID.Text;
-            pb.Nombre = txtNombre.Text;
-            pb.Descripcion = txtDescripcion.Text;
-            pb.Cantidad = int.Parse(numeric1.Text);
-            pb.PrecioVenta = decimal.Parse(txtVenta.Text);
-            pb.PrecioCompra = decimal.Parse(txtCompra.Text);
-            pb.IdTipoProducto = int.Parse(cmbTipo.SelectedValue.ToString());
 
 
 
-            crud.actualizarProducto(pb);
-
-            datalistado = crud.mostrarTipos(datalistado);
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            pb.IdProductos = txtID.Text;
-
-            crud.deleteProducto(pb);
-
-            limpiar();
-
-            datalistado = crud.mostrarTipos(datalistado);
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -125,23 +86,19 @@ namespace FerreteriaAlejandra
                 return;
             }
 
-            ebc = crud.validarProducto(pb);
-
-            if (ebc == true)
+            if (true)
             {
-                MessageBox.Show("El producto: " + pb.Nombre + "ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("El producto: " + pb.Nombre + "ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             //crud.nombreProducto = txtBuscar.Text;
 
-            datalistado = crud.MostrarProducto(datalistado, txtBuscar.Text);
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            datalistado = crud.mostrarTipos(datalistado);
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
