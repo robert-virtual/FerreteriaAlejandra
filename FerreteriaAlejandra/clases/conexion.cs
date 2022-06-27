@@ -15,7 +15,7 @@ namespace FerreteriaAlejandra.clases
 {
     public class Conexion
     {
-        public MySqlConnection conexion;
+        protected MySqlConnection conexion;
 
         public  Conexion()
         {

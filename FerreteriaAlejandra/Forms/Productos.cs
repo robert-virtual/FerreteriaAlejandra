@@ -1,4 +1,5 @@
 ﻿using FerreteriaAlejandra.clases;
+using FerreteriaAlejandra.Clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,20 +15,34 @@ namespace FerreteriaAlejandra
 {
     public partial class Productos : Form
     {
+        Producto producto = new Producto();
+        Categoria categoria = new Categoria();
 
         public Productos()
         {
             InitializeComponent();
+            CargarTiposProductos();
+            CargarProductos();
         }
+        private void CargarProductos()
+        {
+            dgv_productos.DataSource = producto.ObtenerTodos();
+        }
+        private void CargarTiposProductos()
+        {
+            cmb_categoria.DataSource = categoria.ObtenerTodos();
+            cmb_categoria.DisplayMember = "Nombre";
+            cmb_categoria.ValueMember = "Id";
 
+        }
         public void limpiar()
         {
-            txtNombre.Text = "";
-            txtDescripcion.Text = "";
-            numeric1.Text = "";
-            txtVenta.Text = "";
-            txtCompra.Text = "";
-            cmbTipo.Text = "";
+            txt_nombre.Text = "";
+            txt_descripcion.Text = "";
+            n_cantidad.Text = "";
+            n_pventa.Value = 0;
+            n_pcompra.Value= 0;
+            cmb_categoria.Text = "";
         }
 
         private void datalistado_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -54,10 +69,19 @@ namespace FerreteriaAlejandra
 
         private void Productos_Load(object sender, EventArgs e)
         {
+
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            producto.Nombre = txt_nombre.Text;
+            producto.Descripcion = txt_descripcion.Text;
+
+            producto.Cantidad = (int)n_cantidad.Value;
+            producto.PrecioVenta = n_pventa.Value;
+            producto.PrecioCompra = n_pcompra.Value;
+            producto.IdCategoria = (int)cmb_categoria.SelectedValue;
+
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -123,10 +147,10 @@ namespace FerreteriaAlejandra
 
         private void txtNombre_Validated(object sender, EventArgs e)
         {
-            if (txtNombre.Text.Trim() == "")
+            if (txt_nombre.Text.Trim() == "")
             {
-                errorProvider1.SetError(txtNombre, "Introduce el nombre del producto");
-                txtNombre.Focus();
+                errorProvider1.SetError(txt_nombre, "Introduce el nombre del producto");
+                txt_nombre.Focus();
             }
             else
             {
@@ -136,10 +160,10 @@ namespace FerreteriaAlejandra
 
         private void txtDescripcion_Validated(object sender, EventArgs e)
         {
-            if (txtDescripcion.Text.Trim() == "")
+            if (txt_descripcion.Text.Trim() == "")
             {
-                errorProvider1.SetError(txtDescripcion, "Introduce la descripcion del producto");
-                txtDescripcion.Focus();
+                errorProvider1.SetError(txt_descripcion, "Introduce la descripcion del producto");
+                txt_descripcion.Focus();
             }
             else
             {
@@ -149,10 +173,10 @@ namespace FerreteriaAlejandra
 
         private void numeric1_Validated(object sender, EventArgs e)
         {
-            if (numeric1.Text.Trim() == "")
+            if (n_cantidad.Text.Trim() == "")
             {
-                errorProvider1.SetError(numeric1, "Introduce la cantidad del producto");
-                numeric1.Focus();
+                errorProvider1.SetError(n_cantidad, "Introduce la cantidad del producto");
+                n_cantidad.Focus();
             }
             else
             {
@@ -162,10 +186,10 @@ namespace FerreteriaAlejandra
 
         private void txtCompra_Validated(object sender, EventArgs e)
         {
-            if (txtCompra.Text.Trim() == "")
+            if (n_pcompra.Value == 0)
             {
-                errorProvider1.SetError(txtCompra, "Introduce el precio de la compra del producto");
-                txtCompra.Focus();
+                errorProvider1.SetError(n_pcompra, "Introduce el precio de la compra del producto");
+                n_pcompra.Focus();
             }
             else
             {
@@ -175,10 +199,10 @@ namespace FerreteriaAlejandra
 
         private void txtVenta_Validated(object sender, EventArgs e)
         {
-            if (txtVenta.Text.Trim() == "")
+            if (n_pventa.Value == 0)
             {
-                errorProvider1.SetError(txtVenta, "Introduce el precio de la venta del producto");
-                txtVenta.Focus();
+                errorProvider1.SetError(n_pventa, "Introduce el precio de la venta del producto");
+                n_pventa.Focus();
             }
             else
             {
