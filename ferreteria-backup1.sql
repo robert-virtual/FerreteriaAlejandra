@@ -26,7 +26,7 @@ CREATE TABLE `categorias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) COLLATE utf8mb3_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,10 +35,6 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES
-(1,'Construccion'),
-(2,'Electricidad'),
-(3,'Fontaneria');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,11 +197,11 @@ CREATE TABLE `productos` (
   `cantidad` float NOT NULL,
   `precioCompra` decimal(10,2) NOT NULL,
   `precioVenta` decimal(10,2) NOT NULL,
-  `idCategoria` int(11) DEFAULT NULL,
+  `idTipoProducto` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idCategoria` (`idCategoria`),
-  CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`idCategoria`) REFERENCES `categorias` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+  KEY `fk_productos_tipoproducto1_idx` (`idTipoProducto`),
+  CONSTRAINT `fk_productos_tipoproducto1` FOREIGN KEY (`idTipoProducto`) REFERENCES `tipoproducto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,9 +210,6 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES
-(2,'Abrazadera Durman ','4X1/2 plg',100,85.00,100.00,3),
-(3,'Union Conduit 1.1/2-Plg','Union Conduit 1.1/2-Plg',100,50.00,80.00,2);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,6 +261,32 @@ CREATE TABLE `roles` (
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tipoproducto`
+--
+
+DROP TABLE IF EXISTS `tipoproducto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tipoproducto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) COLLATE utf8mb3_bin NOT NULL,
+  `idCategoria` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tipoproducto_categorias_idx` (`idCategoria`),
+  CONSTRAINT `fk_tipoproducto_categorias` FOREIGN KEY (`idCategoria`) REFERENCES `categorias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipoproducto`
+--
+
+LOCK TABLES `tipoproducto` WRITE;
+/*!40000 ALTER TABLE `tipoproducto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tipoproducto` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -335,4 +354,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-27 18:24:20
+-- Dump completed on 2022-06-27 13:20:50

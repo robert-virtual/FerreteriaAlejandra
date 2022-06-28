@@ -93,10 +93,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(894, 582);
             this.panel2.TabIndex = 6;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // n_pventa
             // 
             this.n_pventa.Location = new System.Drawing.Point(199, 265);
+            this.n_pventa.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.n_pventa.Name = "n_pventa";
             this.n_pventa.Size = new System.Drawing.Size(150, 27);
             this.n_pventa.TabIndex = 21;
@@ -104,6 +110,11 @@
             // n_pcompra
             // 
             this.n_pcompra.Location = new System.Drawing.Point(199, 228);
+            this.n_pcompra.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.n_pcompra.Name = "n_pcompra";
             this.n_pcompra.Size = new System.Drawing.Size(150, 27);
             this.n_pcompra.TabIndex = 21;
@@ -111,6 +122,11 @@
             // n_cantidad
             // 
             this.n_cantidad.Location = new System.Drawing.Point(199, 186);
+            this.n_cantidad.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.n_cantidad.Name = "n_cantidad";
             this.n_cantidad.Size = new System.Drawing.Size(150, 27);
             this.n_cantidad.TabIndex = 21;
@@ -278,6 +294,7 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(121, 27);
             this.txtBuscar.TabIndex = 6;
+            this.txtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyUp);
             // 
             // dgv_productos
             // 
@@ -292,6 +309,7 @@
             this.dgv_productos.RowTemplate.Height = 33;
             this.dgv_productos.Size = new System.Drawing.Size(471, 142);
             this.dgv_productos.TabIndex = 0;
+            this.dgv_productos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_productos_CellClick);
             this.dgv_productos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistado_CellContentClick);
             // 
             // btnNuevo

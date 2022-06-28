@@ -16,19 +16,22 @@ namespace FerreteriaAlejandra
     public partial class Productos : Form
     {
         Producto producto = new Producto();
+        List<Producto> productos = new List<Producto>();
         Categoria categoria = new Categoria();
 
         public Productos()
         {
             InitializeComponent();
-            CargarTiposProductos();
+            CargarCategorias();
             CargarProductos();
         }
         private void CargarProductos()
         {
-            dgv_productos.DataSource = producto.ObtenerTodos();
+            dgv_productos.DataSource = null;
+            productos = producto.ObtenerTodos().ToList();
+            dgv_productos.DataSource = productos;
         }
-        private void CargarTiposProductos()
+        private void CargarCategorias()
         {
             cmb_categoria.DataSource = categoria.ObtenerTodos();
             cmb_categoria.DisplayMember = "Nombre";
@@ -47,33 +50,16 @@ namespace FerreteriaAlejandra
 
         private void datalistado_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.RowIndex > -1 && e.ColumnIndex > -1)
-            //{
-            //    pb.IdProductos = datalistado.Rows[renglon].Cells["idProductos"].Value.ToString();
-            //    pb.Nombre = datalistado.Rows[renglon].Cells["nombre"].Value.ToString();
-            //    pb.Descripcion = datalistado.Rows[renglon].Cells["descripcion"].Value.ToString();
-            //    pb.Cantidad = float.Parse(datalistado.Rows[renglon].Cells["cantidad"].Value.ToString());
-            //    pb.PrecioVenta = decimal.Parse(datalistado.Rows[renglon].Cells["precioVenta"].Value.ToString());
-            //    pb.PrecioCompra = decimal.Parse(datalistado.Rows[renglon].Cells["precioCompra"].Value.ToString());
-            //    pb.IdTipoProducto = int.Parse(datalistado.Rows[renglon].Cells["tipoproducto_idTipoProducto"].Value.ToString());
 
-            //    txtID.Text = pb.IdProductos;
-            //    txtNombre.Text = pb.Nombre;
-            //    txtDescripcion.Text = pb.Descripcion;
-            //    numeric1.Text = Convert.ToString(pb.Cantidad);
-            //    txtVenta.Text = Convert.ToString(pb.PrecioVenta);
-            //    txtCompra.Text = Convert.ToString(pb.PrecioCompra);
-            //    cmbTipo.SelectedValue = pb.IdTipoProducto;
-            //}
         }
 
         private void Productos_Load(object sender, EventArgs e)
         {
 
         }
-
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void AsignarProducto()
         {
+
             producto.Nombre = txt_nombre.Text;
             producto.Descripcion = txt_descripcion.Text;
 
@@ -81,6 +67,13 @@ namespace FerreteriaAlejandra
             producto.PrecioVenta = n_pventa.Value;
             producto.PrecioCompra = n_pcompra.Value;
             producto.IdCategoria = (int)cmb_categoria.SelectedValue;
+        }
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            AsignarProducto();
+            producto.Guardar(producto);
+            limpiar();
+            CargarProductos();
 
         }
 
@@ -92,12 +85,24 @@ namespace FerreteriaAlejandra
         private void btnActualizar_Click(object sender, EventArgs e)
         {
 
-
+            if(txt_id.Text == "")
+            {
+                MessageBox.Show("Seleccione un producto", "No ha seleccionado un producto");
+                return;
+            }
+            AsignarProducto();
+            producto.Actualizar(producto);
 
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            if(txt_id.Text == "")
+            {
+                MessageBox.Show("Seleccione un producto", "No ha seleccionado un producto");
+                return;
+            }
+            producto.Eliminar(producto);
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -123,6 +128,7 @@ namespace FerreteriaAlejandra
 
         private void button1_Click(object sender, EventArgs e)
         {
+            CargarProductos();
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
@@ -208,6 +214,40 @@ namespace FerreteriaAlejandra
             {
                 errorProvider1.Clear();
             }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            var prodFiltrados = productos.Where(p => p.Nombre.ToLower().Contains(txtBuscar.Text.ToLower())).ToList();
+            if(prodFiltrados.Count > 0)
+            {
+                dgv_productos.DataSource = prodFiltrados;
+                return;
+            }
+            dgv_productos.DataSource = productos;
+
+        }
+
+        private void dgv_productos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            var id =  (int)dgv_productos.Rows[dgv_productos.CurrentRow.Index].Cells[0].Value;
+            var prod = productos.Find(p => p.Id == id);
+            if (prod == null) return;
+            txt_id.Text = prod.Id.ToString();
+            txt_id.Enabled = false;
+            producto = prod;
+            txt_nombre.Text = prod.Nombre;
+            txt_descripcion.Text = prod.Descripcion;
+            n_cantidad.Value = prod.Cantidad;
+            n_pventa.Value = prod.PrecioVenta;
+            n_pcompra.Value = prod.PrecioCompra;
+            cmb_categoria.SelectedValue = prod.IdCategoria;
         }
     }
 }

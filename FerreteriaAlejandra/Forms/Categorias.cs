@@ -8,22 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FerreteriaAlejandra.clases;
-//using CRUD = mysql.clases;
-using MySql.Data.MySqlClient;
+using FerreteriaAlejandra.Clases;
 
 namespace FerreteriaAlejandra
 {
     public partial class Categorias : Form
     {
+
+        Categoria categoria = new Categoria();
         public Categorias()
         {
             InitializeComponent();
+            CargarCategorias();
         }
 
 
 
-        private void cargarTabla(string dato)
+        private void CargarCategorias()
         {
+            dgv_categorias.DataSource = null;
+            dgv_categorias.DataSource = categoria.ObtenerTodos();
         }
 
 
@@ -41,6 +45,11 @@ namespace FerreteriaAlejandra
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            categoria.Nombre = txtnombre.Text;
+            categoria.Guardar(categoria);
+            limpiar();
+            CargarCategorias();
+
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -84,10 +93,10 @@ namespace FerreteriaAlejandra
             DataGridView senderGrid = (DataGridView)sender;
             try
             {
-                if (datalistado.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+                if (dgv_categorias.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
-                    txtId.Text = (datalistado.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    txtNombre1.Text = (datalistado.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    txtId.Text = (dgv_categorias.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    txtNombre1.Text = (dgv_categorias.Rows[e.RowIndex].Cells[1].Value.ToString());
                 }
             }
             catch

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FerreteriaAlejandra.Clases
 {
-    [Table("Productos")]
+    [Table("productos")]
     public class Producto:Operaciones<Producto>
     {
         public int Id { get; set; }
@@ -34,6 +34,11 @@ namespace FerreteriaAlejandra.Clases
 
         [Write(false)]
         public Categoria Categoria { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
 
 
     }

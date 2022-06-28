@@ -1,4 +1,5 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using FerreteriaAlejandra.clases;
 using System;
 using System.Collections.Generic;
@@ -45,5 +46,13 @@ namespace FerreteriaAlejandra.Clases
                 return conn.Insert(entity);
             }
         }
+        public long Guardar(List<T> entities)
+        {
+            using (var conn = conexion)
+            {
+                return conn.Insert(entities);
+            }
+        }
+
     }
 }
