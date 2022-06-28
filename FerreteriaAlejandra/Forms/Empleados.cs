@@ -143,5 +143,13 @@ namespace FerreteriaAlejandra
             CargarEmpleados();
             MessageBox.Show("Empleado Eliminado","Eliminar Empleado",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
+
+        private void txt_buscar_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            var buscar = txt_buscar.Text.ToLower();
+            var empleadosFiltrados = empleados.Where(c => c.Nombre.ToLower().Contains(buscar) || c.Apellidos.ToLower().Contains(buscar) || c.Direccion.ToLower().Contains(buscar) ).ToList();
+            dgv_empleados.DataSource = empleadosFiltrados;
+        }
     }
 }
