@@ -23,7 +23,7 @@ namespace FerreteriaAlejandra.Clases
         [Write(false)]
         public Venta Venta{ get; set; }
         public long IdVenta{ get; set; }
-
-
+        
+        
     }
 }

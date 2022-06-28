@@ -53,7 +53,6 @@ namespace FerreteriaAlejandra
         public void limpiar()
         {
             txt_dni_cliente.Clear();
-            txt_dni_empleado.Clear();
             venta = new Venta();
             CargarDetalles();
             label_cliente.Visible = false;
@@ -79,6 +78,7 @@ namespace FerreteriaAlejandra
             venta.Guardar();
             MessageBox.Show($"Venta terminada con exito.\nTotal a pagar: {venta}","Venta Terminada",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             limpiar();
+            CargarProductos();
         }
 
         private void dgv_productos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -88,7 +88,6 @@ namespace FerreteriaAlejandra
             var prod = productos.Find(p => p.Id == id);
             if (prod == null) return;
             producto = prod;
-            n_cantidad.Value = prod.Cantidad;
             n_precio.Value = prod.PrecioVenta;
             n_cantidad.Maximum = prod.Cantidad;
         }
@@ -147,9 +146,19 @@ namespace FerreteriaAlejandra
             label_empleado.Text = empleado.Nombre;
 
         }
+        void ActualizarProductos()
+        {
+            dgv_productos.DataSource = null;
+            dgv_productos.DataSource = productos;
 
+        }
         private void btn_agregar_producto_Click(object sender, EventArgs e)
         {
+            if (producto.Id == 0) 
+            {
+                producto = productos[0];
+                n_precio.Value = producto.PrecioVenta;
+            }
             var detalle = new DetalleVenta();
             detalle.Id = venta.Detalles.Count+1;
             detalle.Cantidad = (int)n_cantidad.Value;
@@ -159,6 +168,14 @@ namespace FerreteriaAlejandra
             venta.Detalles.Add(detalle);
             CargarDetalles();
             label_total.Text = $"Total: {venta}";
+            productos = productos.ConvertAll(p =>
+            {
+                if (p.Id == producto.Id) p.Cantidad -= detalle.Cantidad;
+                return p;
+            });
+            ActualizarProductos();
+            producto = new Producto();
+
         }
 
         private void btn_quitar_producto_Click(object sender, EventArgs e)
@@ -168,6 +185,12 @@ namespace FerreteriaAlejandra
             venta.Detalles.Remove(detalleVenta);
             CargarDetalles();
             label_total.Text = $"Total: {venta}";
+            productos = productos.ConvertAll(p =>
+            {
+                if (p.Id == detalleVenta.Producto.Id) p.Cantidad += detalleVenta.Cantidad;
+                return p;
+            });
+            ActualizarProductos();
         }
 
         private void dgv_resumen_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -177,6 +200,11 @@ namespace FerreteriaAlejandra
             var detalle = venta.Detalles.Find(d => d.Id == id);
             if (detalle == null) return;
             detalleVenta = detalle;
+
+        }
+
+        private void dgv_resumen_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

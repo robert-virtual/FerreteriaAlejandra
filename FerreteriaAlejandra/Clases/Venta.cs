@@ -38,6 +38,11 @@ namespace FerreteriaAlejandra.Clases
                 }
                 var totalInsertados = Detalles[0].Guardar(Detalles);
 
+                for (int i = 0; i < Detalles.Count; i++)
+                {
+                    Detalles[i].Producto.Actualizar(Detalles[i].Producto);
+                }
+
                 return totalInsertados == Detalles.Count;
 
             }

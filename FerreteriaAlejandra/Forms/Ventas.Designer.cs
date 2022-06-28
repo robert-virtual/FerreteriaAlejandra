@@ -94,9 +94,19 @@
             0,
             0,
             0});
+            this.n_precio.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.n_precio.Name = "n_precio";
             this.n_precio.Size = new System.Drawing.Size(150, 27);
             this.n_precio.TabIndex = 5;
+            this.n_precio.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // n_cantidad
             // 
@@ -106,9 +116,19 @@
             0,
             0,
             0});
+            this.n_cantidad.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.n_cantidad.Name = "n_cantidad";
             this.n_cantidad.Size = new System.Drawing.Size(150, 27);
             this.n_cantidad.TabIndex = 5;
+            this.n_cantidad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.n_cantidad.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label5
@@ -272,6 +292,7 @@
             this.dgv_resumen.Size = new System.Drawing.Size(446, 296);
             this.dgv_resumen.TabIndex = 1;
             this.dgv_resumen.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_resumen_CellClick);
+            this.dgv_resumen.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_resumen_CellContentClick);
             // 
             // dgv_productos
             // 
