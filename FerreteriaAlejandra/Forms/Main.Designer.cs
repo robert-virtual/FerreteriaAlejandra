@@ -44,13 +44,13 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btn_proveedores = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.btn_clientes = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_compras = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btn_empleados = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -131,13 +131,13 @@
             this.panel2.Controls.Add(this.panel10);
             this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.panel9);
-            this.panel2.Controls.Add(this.button6);
+            this.panel2.Controls.Add(this.btn_proveedores);
             this.panel2.Controls.Add(this.panel8);
             this.panel2.Controls.Add(this.btn_clientes);
             this.panel2.Controls.Add(this.panel7);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.panel6);
-            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.btn_compras);
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.btn_empleados);
             this.panel2.Controls.Add(this.panel4);
@@ -268,23 +268,23 @@
             this.panel9.TabIndex = 1;
             this.panel9.Paint += new System.Windows.Forms.PaintEventHandler(this.panel9_Paint);
             // 
-            // button6
+            // btn_proveedores
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button6.Image = global::FerreteriaAlejandra.Properties.Resources.mensajero;
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(6, 276);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(214, 32);
-            this.button6.TabIndex = 2;
-            this.button6.Text = "Proveedores";
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.btn_proveedores.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btn_proveedores.FlatAppearance.BorderSize = 0;
+            this.btn_proveedores.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
+            this.btn_proveedores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_proveedores.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_proveedores.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_proveedores.Image = global::FerreteriaAlejandra.Properties.Resources.mensajero;
+            this.btn_proveedores.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_proveedores.Location = new System.Drawing.Point(6, 276);
+            this.btn_proveedores.Name = "btn_proveedores";
+            this.btn_proveedores.Size = new System.Drawing.Size(214, 32);
+            this.btn_proveedores.TabIndex = 2;
+            this.btn_proveedores.Text = "Proveedores";
+            this.btn_proveedores.UseVisualStyleBackColor = false;
+            this.btn_proveedores.Click += new System.EventHandler(this.btn_proveedores_Click);
             // 
             // panel8
             // 
@@ -349,23 +349,23 @@
             this.panel6.TabIndex = 1;
             this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
             // 
-            // button3
+            // btn_compras
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Image = global::FerreteriaAlejandra.Properties.Resources.bolsas_de_compra;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(6, 135);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(214, 32);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Compras";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btn_compras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btn_compras.FlatAppearance.BorderSize = 0;
+            this.btn_compras.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
+            this.btn_compras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_compras.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_compras.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_compras.Image = global::FerreteriaAlejandra.Properties.Resources.bolsas_de_compra;
+            this.btn_compras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_compras.Location = new System.Drawing.Point(6, 135);
+            this.btn_compras.Name = "btn_compras";
+            this.btn_compras.Size = new System.Drawing.Size(214, 32);
+            this.btn_compras.TabIndex = 2;
+            this.btn_compras.Text = "Compras";
+            this.btn_compras.UseVisualStyleBackColor = false;
+            this.btn_compras.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel5
             // 
@@ -486,13 +486,13 @@
         private Panel panel10;
         private Button button7;
         private Panel panel9;
-        private Button button6;
+        private Button btn_proveedores;
         private Panel panel8;
         private Button btn_clientes;
         private Panel panel7;
         private Button button4;
         private Panel panel6;
-        private Button button3;
+        private Button btn_compras;
         private Panel panel5;
         private Button btn_empleados;
         private PictureBox BtnCerrar;

@@ -70,11 +70,6 @@ namespace FerreteriaAlejandra
 
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void panel5_Paint(object sender, PaintEventArgs e)
         {
 
@@ -92,7 +87,7 @@ namespace FerreteriaAlejandra
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            AbrirFormHija(new Compras());
         }
 
         private void panel7_Paint(object sender, PaintEventArgs e)
@@ -154,6 +149,11 @@ namespace FerreteriaAlejandra
         private void panel14_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btn_proveedores_Click(object sender, EventArgs e)
+        {
+            AbrirFormHija(new Proveedores());
         }
     }
 }

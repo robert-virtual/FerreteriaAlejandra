@@ -42,6 +42,7 @@ namespace FerreteriaAlejandra
              txt_direccion.Clear();
              txt_telefono.Clear();
              txt_correo.Clear();
+             cliente = new Cliente();
         }
         private void AsignarCliente()
         {
@@ -57,7 +58,11 @@ namespace FerreteriaAlejandra
         }
         private void btn_guardar_Click(object sender, EventArgs e)
         {
-            if (cliente.Id != 0) return;
+            if (cliente.Id != 0)
+            {
+                MessageBox.Show("No se puede crear un Cliente porque tiene selecionado un cliente existente.\nClick en Nuevo para crear un nuevo Cliente", "Crear Cliente",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                return;
+            }
             AsignarCliente();
             cliente.Guardar(cliente);
             Limpiar();
