@@ -64,7 +64,6 @@ namespace FerreteriaAlejandra
             venta = new Venta();
             CargarDetalles();
             label_cliente.Visible = false;
-            label_empleado.Visible = false;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -74,15 +73,15 @@ namespace FerreteriaAlejandra
 
         private void btn_terminar_venta_Click(object sender, EventArgs e)
         {
-            if (empleado.Id == 0 && cliente.Id == 0)
+            if (cliente.Id == 0)
             {
-                MessageBox.Show("Debe proporcionar doatos de cliente y empleado","Terminar Venta",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Debe proporcionar doatos de cliente","Terminar Venta",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
             }
             venta.IdCliente = cliente.Id;
-            venta.IdEmpleado = empleado.Id;
+            venta.IdEmpleado = Login.usuario.Empleado.Id;
             venta.Cliente = cliente;
-            venta.Empleado = empleado;
+            venta.Empleado = Login.usuario.Empleado;
             venta.Guardar();
             MessageBox.Show($"Venta terminada con exito.\nTotal a pagar: {venta}","Venta Terminada",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             limpiar();
