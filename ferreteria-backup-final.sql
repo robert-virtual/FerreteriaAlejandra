@@ -1,8 +1,5 @@
--- MariaDB dump 10.19  Distrib 10.8.3-MariaDB, for debian-linux-gnu (x86_64)
---
 -- Host: localhost    Database: ferreteria
 -- ------------------------------------------------------
--- Server version	10.8.3-MariaDB-1:10.8.3+maria~focal
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
