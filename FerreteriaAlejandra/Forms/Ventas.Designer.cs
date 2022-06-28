@@ -244,13 +244,12 @@
             // 
             // txt_dni_empleado
             // 
+            this.txt_dni_empleado.Enabled = false;
             this.txt_dni_empleado.Location = new System.Drawing.Point(518, 88);
             this.txt_dni_empleado.MaxLength = 13;
             this.txt_dni_empleado.Name = "txt_dni_empleado";
             this.txt_dni_empleado.Size = new System.Drawing.Size(200, 27);
             this.txt_dni_empleado.TabIndex = 3;
-            this.txt_dni_empleado.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.txt_dni_empleado.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_dni_empleado_KeyUp);
             // 
             // btn_terminar_venta
             // 
@@ -292,7 +291,6 @@
             this.dgv_resumen.Size = new System.Drawing.Size(446, 296);
             this.dgv_resumen.TabIndex = 1;
             this.dgv_resumen.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_resumen_CellClick);
-            this.dgv_resumen.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_resumen_CellContentClick);
             // 
             // dgv_productos
             // 

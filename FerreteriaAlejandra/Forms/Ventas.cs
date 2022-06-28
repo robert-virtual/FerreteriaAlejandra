@@ -1,4 +1,5 @@
 ﻿using FerreteriaAlejandra.Clases;
+using FerreteriaAlejandra.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,8 +24,15 @@ namespace FerreteriaAlejandra
         {
             InitializeComponent();
             CargarProductos();
+            CargarEmpleado();
         }
 
+        void CargarEmpleado()
+        {
+            txt_dni_empleado.Text = Login.usuario.Empleado.DNI;
+            label_empleado.Text = $"{Login.usuario.Empleado.Nombre} {Login.usuario.Empleado.Apellidos}";
+            label_empleado.Visible = true;
+        }
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -126,26 +134,6 @@ namespace FerreteriaAlejandra
             label_cliente.Text = cliente.Nombre ;
         }
 
-        private void txt_dni_empleado_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (txt_dni_empleado.Text.Trim().Length != 13)
-            {
-                label_empleado.Visible = false;
-                return;
-            }
-            var res = empleado.ObtenerPorDni(txt_dni_empleado.Text.Trim());
-            label_empleado.Visible = true;
-            if (res == null)
-            {
-                label_empleado.ForeColor = Color.Red;
-                label_empleado.Text = "No se encontro ningun Empleado con el dni proporcionado";
-                return;
-            }
-            empleado = res;
-            label_empleado.ForeColor = Color.White;
-            label_empleado.Text = empleado.Nombre;
-
-        }
         void ActualizarProductos()
         {
             dgv_productos.DataSource = null;
@@ -203,9 +191,5 @@ namespace FerreteriaAlejandra
 
         }
 
-        private void dgv_resumen_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
